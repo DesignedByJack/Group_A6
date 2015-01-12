@@ -1,0 +1,55 @@
+from Tkinter import*
+import time
+import random
+
+class Robot:
+    
+    def __init__(self, x, y, speed=5.0, size=8, colour='blue'):
+
+        self.x = x
+        self.y = y
+        self._vx = 0
+        self._vy = 0
+        self.speed = speed
+        self.size = size
+        self.colour = colour
+
+    def roam(self):
+
+        v = self.speed
+        self._vx += random.randint(-v, v)
+        self._vy += random.randint(-v, v)
+        self._vx = max(-v, min(self._vx, v))
+        self._vy = max(-v, min(self._vy, v))
+
+        self.x += self._vx
+        self.y += self._vy
+        
+        self.canvas.coords(self.shape, self.x, self.y, self.x + self.size, self.y + self.size)
+        self.canvas.update()        
+
+    def drawRobot(self,canvas):
+        
+        self.canvas = canvas
+        self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
+
+
+
+window= Tk()
+canvas = Canvas(window, width=400, height=300, bg='white')
+canvas.pack(padx=10, pady=10)
+
+r2d2 = Robot(150,150, speed=5.0, colour='red')
+c3po = Robot(21, 21, speed=5.0, size=8)
+
+r2d2.drawRobot(canvas)
+c3po.drawRobot(canvas)
+
+for t in range(500):
+
+    r2d2.roam()
+    c3po.roam()
+    time.sleep(.1)
+
+window.mainloop()
+                
