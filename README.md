@@ -32,4 +32,4 @@ def roam(self):
 
 Here... Have a look at this cute cat gif!
 
--![alt text](http://i.imgur.com/WWLYo.gif "Here... Have a look at this cute cat gif!")
+-![alt text](http://i.imgur.com/QnkFrG3.gif "Here... Have a look at this cute cat gif!")
