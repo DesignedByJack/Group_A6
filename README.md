@@ -1,6 +1,6 @@
 # Group_A6 Repository!
 
-We've worked really hard to bring this project to everyone. We think that the __ lines of code contained herein are compact, minimal, but staggeringly powerful.
+We've worked really hard to bring this project to everyone. We think that our project - and the __ lines of code contained herein - is compact, minimal, but staggeringly powerful.
 
 ## == Project Description ==
 
