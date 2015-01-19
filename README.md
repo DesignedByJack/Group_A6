@@ -26,7 +26,7 @@ def roam(self):
         self.canvas.update()        
 ```
 
-* You can view the full code that the example above was taken from by clicking [Here](https://github.com/DesignedByJack/Group_A6/blob/master/Robot%20Class).
+* You can view the full code that the example above was taken from by clicking [here](https://github.com/DesignedByJack/Group_A6/blob/master/Robot%20Class).
 
 ## == Some Important Stuff! ==
 
