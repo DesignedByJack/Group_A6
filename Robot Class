@@ -1,10 +1,11 @@
 from Tkinter import*
 import time
 import random
+import math
 
 class Robot:
     
-    def __init__(self, x, y, speed=5.0, size=8, colour='blue'):
+    def __init__(self, x, y, speed=5.0, size=15, colour='blue'):
 
         self.x = x
         self.y = y
@@ -14,13 +15,10 @@ class Robot:
         self.size = size
         self.colour = colour
 
-    def roam(self):
+    def pathfind(self):
 
         v = self.speed
-        self._vx += random.randint(-v, v)
-        self._vy += random.randint(-v, v)
-        self._vx = max(-v, min(self._vx, v))
-        self._vy = max(-v, min(self._vy, v))
+        
 
         self.x += self._vx
         self.y += self._vy
@@ -28,27 +26,72 @@ class Robot:
         self.canvas.coords(self.shape, self.x, self.y, self.x + self.size, self.y + self.size)
         self.canvas.update()        
 
-    def drawRobot(self,canvas):
+    def drawRobot(self, canvas):
         
         self.canvas = canvas
         self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
 
+class Obstacle:
+    
+    def __init__(self, x, y, size, treasure):
 
+        self.x = x
+        self.y = y
+        self.treasure = treasure
+        self.xEnd = x + size
+        self.yEnd = y + size
+        self.size = x + size
 
+    def drawObstacle(self, canvas):
+            
+        self.rectangle = canvas.create_rectangle(self.x, self.y, self.xEnd, self.yEnd,fill = 'purple')
+            
+class World:
+
+    def __init__(self):
+        self.obstacles = []
+            
 window= Tk()
-canvas = Canvas(window, width=400, height=300, bg='white')
+canvas = Canvas(window, width=600, height=450, bg='white')
 canvas.pack(padx=10, pady=10)
 
 r2d2 = Robot(150,150, speed=5.0, colour='red')
-c3po = Robot(21, 21, speed=5.0, size=8)
+c3po = Robot(21, 21, speed=5.0)
 
 r2d2.drawRobot(canvas)
 c3po.drawRobot(canvas)
 
-for t in range(500):
+rectangle1 = Obstacle(50, 50, 30, True)
+rectangle1.drawObstacle(canvas)
 
-    r2d2.roam()
-    c3po.roam()
+rectangle2= Obstacle(120, 200, 30, False)
+rectangle2.drawObstacle(canvas)
+
+rectangle3 = Obstacle(300, 370, 30, True)
+rectangle3.drawObstacle(canvas)
+
+rectangle4 = Obstacle(260, 80, 30, True)
+rectangle4.drawObstacle(canvas)
+
+rectangle5 = Obstacle(470, 230, 30, True)
+rectangle5.drawObstacle(canvas)
+
+rectangle6 = Obstacle(520, 30, 30, True)
+rectangle6.drawObstacle(canvas)
+
+rectangle7 = Obstacle(40, 330, 30, False)
+rectangle7.drawObstacle(canvas)
+
+rectangle8 = Obstacle(490, 400, 30, True)
+rectangle8.drawObstacle(canvas)
+
+rectangle9 = Obstacle(330, 200, 30, False)
+rectangle9.drawObstacle(canvas)
+
+for t in range(5000):
+
+    r2d2.pathfind()
+    c3po.pathfind()
     time.sleep(.1)
 
 window.mainloop()
