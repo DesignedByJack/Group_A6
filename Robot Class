@@ -55,8 +55,18 @@ window= Tk()
 canvas = Canvas(window, width=600, height=450, bg='white')
 canvas.pack(padx=10, pady=10)
 
-r2d2 = Robot(150,150, speed=5.0, colour='red')
-c3po = Robot(21, 21, speed=5.0)
+canvas.create_rectangle(50,50,750,500)
+canvas.create_oval(20,60,40,80, fill='red')
+canvas.create_oval(20,90,40,110, fill='orange')
+canvas.create_oval(20,120,40,140, fill='green')
+rand1 = random.randrange(60,740,1)
+rand2 =random.randrange(60,490,1)
+rand3=random.randrange(60,740,1)
+rand4=random.randrange(60,490,1)
+r2d2 = Robot(rand1,rand2, speed=5.0, colour='red')
+c3po = Robot(rand3, rand4, speed=5.0, size=8)
+
+
 
 r2d2.drawRobot(canvas)
 c3po.drawRobot(canvas)
