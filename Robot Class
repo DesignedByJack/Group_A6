@@ -6,6 +6,7 @@ import time #Imports 'time' from the Tkinter Python library
 import random #Imports 'random' from the Tkinter Python library
 import math #Imports 'math' from the Tkinter Python library
 
+#Class for the Robots
 class Robot:
     
     def __init__(self, x, y, speed=5.0, size=15, colour='blue'):
@@ -34,6 +35,7 @@ class Robot:
         self.canvas = canvas
         self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
 
+#Class for the Obstacles
 class Obstacle:
     
     def __init__(self, x, y, size, treasure):
@@ -49,6 +51,7 @@ class Obstacle:
             
         self.rectangle = canvas.create_rectangle(self.x, self.y, self.xEnd, self.yEnd,fill = 'purple')
             
+#World Class
 class World:
 
     def __init__(self):
