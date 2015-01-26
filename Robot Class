@@ -1,7 +1,10 @@
+#START OF PROGRAM
+ 
+#Imports all from the Tkinter Python library
 from Tkinter import*
-import time
-import random
-import math
+import time #Imports 'time' from the Tkinter Python library
+import random #Imports 'random' from the Tkinter Python library
+import math #Imports 'math' from the Tkinter Python library
 
 class Robot:
     
@@ -51,9 +54,10 @@ class World:
     def __init__(self):
         self.obstacles = []
             
-window= Tk()
-canvas = Canvas(window, width=600, height=450, bg='white')
-canvas.pack(padx=10, pady=10)
+window= Tk() #Creates a GUI interface window
+window.title("Group 6 | Project 2") #Sets the title of the window to 'Group 6 | Project 2'
+canvas = Canvas(window, width=600, height=450, bg='white') #Sets the width, height and background colour of the GUI window
+canvas.pack(padx=10, pady=10) #The canvas widget from the Tkinter library
 
 canvas.create_rectangle(50,50,750,500)
 canvas.create_oval(20,60,40,80, fill='red')
@@ -66,11 +70,10 @@ rand4=random.randrange(60,490,1)
 r2d2 = Robot(rand1,rand2, speed=5.0, colour='red')
 c3po = Robot(rand3, rand4, speed=5.0, size=8)
 
-
-
 r2d2.drawRobot(canvas)
 c3po.drawRobot(canvas)
 
+#Course Shapes
 rectangle1 = Obstacle(50, 50, 30, True)
 rectangle1.drawObstacle(canvas)
 
@@ -104,4 +107,6 @@ for t in range(5000):
     c3po.pathfind()
     time.sleep(.1)
 
-window.mainloop()
+window.mainloop()#Keeps the window open while the program is running
+ 
+#END OF PROGRAM
