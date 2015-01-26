@@ -59,7 +59,7 @@ class World:
             
 window= Tk() #Creates a GUI interface window
 window.title("Group 6 | Project 2") #Sets the title of the window to 'Group 6 | Project 2'
-canvas = Canvas(window, width=600, height=450, bg='white') #Sets the width, height and background colour of the GUI window
+canvas = Canvas(window, width=800, height=600, bg='white') #Sets the width, height and background colour of the GUI window
 canvas.pack(padx=10, pady=10) #The canvas widget from the Tkinter library
 
 canvas.create_rectangle(50,50,750,500)
