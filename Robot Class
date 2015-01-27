@@ -9,9 +9,8 @@ import math #Imports 'math' from the Tkinter Python library
 from PIL import ImageTk
 
 #What about placing a class which will contain all atributes common for all objects?
-class objects:
+class all_objects:
     def __init__(self,x,y,lenght,width,colour,canvas):
-        global ObjectList
         self.x=x
         self.y=y
         self.lenght=lenght
