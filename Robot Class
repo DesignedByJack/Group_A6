@@ -6,6 +6,8 @@ import time #Imports 'time' from the Tkinter Python library
 import random #Imports 'random' from the Tkinter Python library
 import math #Imports 'math' from the Tkinter Python library
 
+from PIL import ImageTk
+
 #Class for the Robots
 class Robot:
     
@@ -56,11 +58,16 @@ class World:
 
     def __init__(self):
         self.obstacles = []
-            
+             
 window= Tk() #Creates a GUI interface window
 window.title("Group 6 | Project 2") #Sets the title of the window to 'Group 6 | Project 2'
 canvas = Canvas(window, width=800, height=600, bg='white') #Sets the width, height and background colour of the GUI window
 canvas.pack(padx=10, pady=10) #The canvas widget from the Tkinter library
+
+image = ImageTk.PhotoImage(file = "arr_treasure.jpg")
+canvas.create_image(0, 0, image = image, anchor = CENTER)
+
+canvas.pack(expand = YES, fill = BOTH)
 
 canvas.create_rectangle(50,50,750,500)
 canvas.create_oval(20,60,40,80, fill='red')
