@@ -120,7 +120,7 @@ rectangle7.drawObstacle(canvas)
 
 rectangle8 = Obstacle(490, 400, 30, True)
 rectangle8.drawObstacle(canvas)
-
+hhhhh
 rectangle9 = Obstacle(330, 200, 30, False)
 rectangle9.drawObstacle(canvas)
 
