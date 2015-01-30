@@ -49,9 +49,14 @@ class Robot:
         
         self.canvas = canvas
         self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
+    
+    def treasure(self, canvas):
 
-#Class for the Obstacles
-class Obstacle:
+        self.canvas = canvas
+        self.oval = canvas.create_oval((self.x + self.xEnd - 10)/2, (self.y + self.yEnd - 10)/2,(self.x + self.xEnd + 10)/2,(self.y + self.yEnd + 10)/2, fill = 'yellow')
+             
+#Class for the Landmarks
+class Landmark:
     
     def __init__(self, x, y, size, treasure):
 
@@ -62,7 +67,7 @@ class Obstacle:
         self.yEnd = y + size
         self.size = x + size
 
-    def drawObstacle(self, canvas):
+    def drawLandmark(self, canvas):
             
         self.rectangle = canvas.create_rectangle(self.x, self.y, self.xEnd, self.yEnd,fill = 'purple')
             
@@ -97,32 +102,38 @@ r2d2.drawRobot(canvas)
 c3po.drawRobot(canvas)
 
 #Course Shapes
-rectangle1 = Obstacle(50, 50, 30, True)
-rectangle1.drawObstacle(canvas)
+rectangle1 = Landmark(70, 70, 30)
+rectangle1.drawLandmark(canvas)
+rectangle1.treasure(canvas)
 
-rectangle2= Obstacle(120, 200, 30, False)
-rectangle2.drawObstacle(canvas)
+rectangle2 = Landmark(120, 200, 30)
+rectangle2.drawLandmark(canvas)
 
-rectangle3 = Obstacle(300, 370, 30, True)
-rectangle3.drawObstacle(canvas)
+rectangle3 = Landmark(400, 370, 30)
+rectangle3.drawLandmark(canvas)
+rectangle3.treasure(canvas)
 
-rectangle4 = Obstacle(260, 80, 30, True)
-rectangle4.drawObstacle(canvas)
+rectangle4 = Landmark(360, 90, 30)
+rectangle4.drawLandmark(canvas)
+rectangle4.treasure(canvas)
 
-rectangle5 = Obstacle(470, 230, 30, True)
-rectangle5.drawObstacle(canvas)
+rectangle5 = Landmark(570, 230, 30)
+rectangle5.drawLandmark(canvas)
 
-rectangle6 = Obstacle(520, 30, 30, True)
-rectangle6.drawObstacle(canvas)
+rectangle6 = Landmark(670, 130, 30)
+rectangle6.drawLandmark(canvas)
+rectangle6.treasure(canvas)
 
-rectangle7 = Obstacle(40, 330, 30, False)
-rectangle7.drawObstacle(canvas)
+rectangle7 = Landmark(100, 380, 30)
+rectangle7.drawLandmark(canvas)
 
-rectangle8 = Obstacle(490, 400, 30, True)
-rectangle8.drawObstacle(canvas)
+rectangle8 = Landmark(580, 400, 30)
+rectangle8.drawLandmark(canvas)
+rectangle8.treasure(canvas)
 
-rectangle9 = Obstacle(330, 200, 30, False)
-rectangle9.drawObstacle(canvas)
+rectangle9 = Landmark(330, 200, 30)
+rectangle9.drawLandmark(canvas)
+rectangle9.treasure(canvas)
 
 for t in range(5000):
 
