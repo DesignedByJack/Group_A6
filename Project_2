@@ -82,13 +82,14 @@ class Robot:
 class landmark(objects):
     
     def __init__(self, x, y,lenght, width,colour,canvas,ID, treasure,Road):
-
+        objects.__init__(self,x,y,length,width,colour,canvas)
         self.treasure = treasure
         self.ID=ID
         self.Road=Road         
 
 class Treasure(objects):
     def __init__(self,x,y,lenght,width,colour,canvas,Found):
+        objects.__init__(self,x,y,length,width,colour,canvas)
         self.Found=Found
 
     def Treasure_Delete(self,colour='Brown'):
