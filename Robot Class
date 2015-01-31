@@ -71,6 +71,20 @@ class Landmark:
             
         self.rectangle = canvas.create_rectangle(self.x, self.y, self.xEnd, self.yEnd,fill = 'purple')
             
+#Class for lights
+class Lights():
+    def __init__(self,x,y,x1,y1,colour):
+        self.x=x
+        self.y=y
+        self.y1=y1
+        self.x1=x1
+        self.colour = colour
+        self.object = canvas.create_oval(self.x,self.y,self.x1,self.y1,fill = self.colour)
+        
+    def change_colour(self, colour):
+        canvas.itemconfig(self.object, fill=colour)
+        canvas.update()
+
 #World Class
 class World:
 
@@ -88,9 +102,13 @@ canvas.create_image(0, 0, image = image, anchor = CENTER)
 canvas.pack(expand = YES, fill = BOTH)
 
 canvas.create_rectangle(50,50,750,500)
-canvas.create_oval(20,60,40,80, fill='red')
-canvas.create_oval(20,90,40,110, fill='orange')
-canvas.create_oval(20,120,40,140, fill='green')
+
+#Placing lights>>>>
+
+Light1=Lights(20,60,40,80,'red')
+Light2=Lights(20,90,40,110,'orange')
+Light3=Lights(20,120,40,140,'green')
+#<<<<<
 rand1 = random.randrange(60,740,1)
 rand2 =random.randrange(60,490,1)
 rand3=random.randrange(60,740,1)
