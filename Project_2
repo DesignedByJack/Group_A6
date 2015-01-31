@@ -6,7 +6,7 @@ import time #Imports 'time' from the Tkinter Python library
 import random #Imports 'random' from the Tkinter Python library
 import math #Imports 'math' from the Tkinter Python library
 
-from PIL import ImageTk
+#from PIL import ImageTk
 
 
 
@@ -28,7 +28,7 @@ class objects:
         self.x=x
         self.y=y
         self.width=width
-        self.width=width
+        self.height=height
         self.colour=colour
         self.canvas=canvas
         self.object=canvas.create_rectangle(self.x,self.y,self.x+self.width,self.y+self.width,fill = self.colour)
@@ -81,15 +81,15 @@ class Robot:
 #Class for the Obstacles
 class landmark(objects):
     
-    def __init__(self, x, y,lenght, width,colour,canvas,ID, treasure,Road):
-        objects.__init__(self,x,y,length,width,colour,canvas)
+    def __init__(self, x, y,height,width,colour,canvas,ID, treasure,Road):
+        objects.__init__(self,x,y,height,width,colour,canvas)
         self.treasure = treasure
         self.ID=ID
         self.Road=Road         
 
 class Treasure(objects):
-    def __init__(self,x,y,lenght,width,colour,canvas,Found):
-        objects.__init__(self,x,y,length,width,colour,canvas)
+    def __init__(self,x,y,height,width,colour,canvas,Found):
+        objects.__init__(self,x,y,height,width,colour,canvas)
         self.Found=Found
 
     def Treasure_Delete(self,colour='Brown'):
@@ -149,7 +149,7 @@ print(shortest_path(graph, Sand1, Sand2)) # ['A', 'C', 'F']
 Landmark1=landmark(55.0,67.0,10.0,20.0,"blue",canvas,"LongJo",True,Sand2)
 ListOfLandmarks=[Landmark1]
 
-Treasure1=Treasure(200.0,578.0,10.0,5.0,"dark green",canvas,False)
+Treasure1=Treasure(200.0,475.0,10.0,5.0,"dark green",canvas,False)
 
 Robot1 = Robot(52,224,5.0,20,colour='blue')
 Robot1.drawRobot(canvas)
