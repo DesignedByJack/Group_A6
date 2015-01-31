@@ -1,0 +1,139 @@
+from Tkinter import*
+import time
+import random
+
+window= Tk()
+canvas = Canvas(window, width=800, height=600, bg='white')
+canvas.pack(padx=10, pady=10)
+
+
+class Landmark:
+    
+    def __init__(self, x1, y1, x2, y2, tag):
+        self.tag = tag 
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+        self.outline = "black"
+        self.colour = "green"
+        #self.treasure= treasure
+        #print self.treasure
+        self.shape = canvas.create_rectangle(self.x1,self.y1,self.x2,self.y2, fill = self.colour, outline = self.outline)
+
+
+def Map():
+    global elements 
+    elements = [
+            Landmark(80,60,300,120, tag = 1),
+            Landmark(300,350,200,300,tag = 0),
+            Landmark(400,430,450,480,tag = 1),
+            Landmark(500,200,300,250,tag = 0),
+            Landmark(550,90,650,60,tag = 1),
+            Landmark(720,490,600,435,tag = 0),
+            Landmark(200,490,150,430,tag = 0)]
+  
+Map()
+
+def search(Map):
+    for i in range (len(elements)):
+        if elements[i] == 1:
+            return i
+        else:
+            landmark.search() 
+        print i
+
+
+'''def lookup(Map):
+    for i in range(7):
+        if elements == elements[i]:
+            return i + 1
+        return 0
+print lookup("True")'''
+
+    
+
+class Robot:
+
+    
+    def __init__(self, x, y,  colour='blue'):
+
+        self.x = x
+        self.y = y
+        self._vx = 0
+        self._vy = 0
+        self.speed = 5.0
+        self.size = 8
+        self.colour = colour
+
+    def robotMove():
+        x1, y1, x2, y2 = canvas.coords(self.shape)
+
+        while True:
+            self.vx = 10.0
+            self.x1 += self.vx
+
+    def roam(self):
+
+        v = self.speed
+        self._vx += random.randint(-v, v)
+        self._vy += random.randint(-v, v)
+        self._vx = max(-v, min(self._vx, v))
+        self._vy = max(-v, min(self._vy, v))
+
+        self.x += self._vx
+        self.y += self._vy
+        
+        self.canvas.coords(self.shape, self.x, self.y, self.x + self.size, self.y + self.size)
+        self.canvas.update()        
+
+    def drawRobot(self,canvas):
+        
+        self.canvas = canvas
+        self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
+
+
+
+ 
+
+
+
+    
+    
+    
+
+    
+        
+        
+        
+ 
+
+canvas.create_rectangle(50,50,750,500)
+redLight = canvas.create_oval(20,60,40,80, fill='red')
+orangeLight =canvas.create_oval(20,90,40,110, fill='orange')
+greenLight = canvas.create_oval(20,120,40,140, fill='green')
+
+rand1 = random.randrange(60,740,1)
+rand2 =random.randrange(60,490,1)
+rand3=random.randrange(60,740,1)
+rand4=random.randrange(60,490,1)
+
+robot1 = Robot(rand1,rand2, colour='red')
+robot2 = Robot(rand3, rand4,)
+
+robot1.drawRobot(canvas)
+robot2.drawRobot(canvas)
+
+for t in range(500):
+
+    robot1.roam()
+    robot2.roam()
+    time.sleep(.1)
+
+
+ 
+
+window.mainloop()
+
+
+
