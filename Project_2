@@ -1,0 +1,167 @@
+#START OF PROGRAM
+ 
+#Imports all from the Tkinter Python library
+from Tkinter import*
+import time #Imports 'time' from the Tkinter Python library
+import random #Imports 'random' from the Tkinter Python library
+import math #Imports 'math' from the Tkinter Python library
+
+from PIL import ImageTk
+
+
+
+
+window= Tk() #Creates a GUI interface window
+window.title("Group 6 | Project 2") #Sets the title of the window to 'Group 6 | Project 2'
+canvas = Canvas(window, width=800, height=600, bg='white') #Sets the width, height and background colour of the GUI window
+canvas.pack(padx=10, pady=10) #The canvas widget from the Tkinter library
+
+
+
+canvas.pack(expand = YES, fill = BOTH)
+
+
+#Class for the Robots 
+class objects:
+    def __init__(self,x,y,width,height,colour,canvas):
+        global ObjectList
+        self.x=x
+        self.y=y
+        self.width=width
+        self.width=width
+        self.colour=colour
+        self.canvas=canvas
+        self.object=canvas.create_rectangle(self.x,self.y,self.x+self.width,self.y+self.width,fill = self.colour)
+
+class Sand:
+    def __init__(self,name,x,y,width,height,treasure,colour='green'):
+        self.name=name
+        self.x1=x
+        self.y1=y
+        self.x2=x+width
+        self.y2=y+height
+        self.width=width
+        self.height=height
+        self.treasure=treasure
+        self.object=canvas.create_rectangle(self.x1,self.y1,self.x2,self.y2, fill=colour, width=0)
+class Robot:
+    
+    def __init__(self, x, y, speed=5, size=15, colour='blue'):
+
+        self.x = x
+        self.y = y
+        self._vx = 0
+        self._vy = 0
+        self.speed = speed
+        self.size = size
+        self.colour = colour
+        
+
+    def roam(self):
+
+        v = self.speed
+        self._vx += random.randint(-50, 50)
+        self._vy += random.randint(-50, 50)
+        self._vx = max(v, min(self._vx, v))
+        self._vy = max(v, min(self._vy, v))
+
+        self.x += self._vx
+        self.y += self._vy
+
+       
+            
+        
+        self.canvas.coords(self.shape, self.x, self.y, self.x + self.size, self.y + self.size)
+        self.canvas.update()         
+
+    def drawRobot(self, canvas):
+         self.canvas = canvas
+         self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
+
+#Class for the Obstacles
+class landmark(objects):
+    
+    def __init__(self, x, y,lenght, width,colour,canvas,ID, treasure,Road):
+
+        self.treasure = treasure
+        self.ID=ID
+        self.Road=Road         
+
+class Treasure(objects):
+    def __init__(self,x,y,lenght,width,colour,canvas,Found):
+        self.Found=Found
+
+    def Treasure_Delete(self,colour='Brown'):
+        canvas.itemconfig(self.object, fill=colour,width=0)
+        canvas.update
+
+#World Class
+class World:
+
+    def __init__(self):
+        self.obstacles = []
+             
+
+canvas.create_rectangle(50,50,750,500)
+canvas.create_oval(20,60,40,80, fill='red')
+canvas.create_oval(20,90,40,110, fill='orange')
+canvas.create_oval(20,120,40,140, fill='green')
+
+
+
+
+
+
+#The Map. Coordinates for everything inside it are here
+#END
+
+
+Sand1=Sand('Sand1',52,224,697,40, False)
+Sand2=Sand('Sand2',349,52,40,212,True,'blue')
+Sand3=Sand('Sand3',170,120,40,144,False,'blue')
+
+#SEARCHING!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>
+graph = {Sand1: set([Sand2,Sand3])}
+
+
+
+
+def bfs_paths(graph, start, goal):
+    queue = [(start, [start])]
+    while queue:
+        (vertex, path) = queue.pop(0)
+        for next in graph[vertex] - set(path):
+            if next == goal:
+                yield path + [next]
+            else:
+                queue.append((next, path + [next]))
+def shortest_path(graph, start, goal):
+    try:
+        return next(bfs_paths(graph, start, goal))
+    except StopIteration:
+        return None
+
+print(shortest_path(graph, Sand1, Sand2)) # ['A', 'C', 'F']
+#END!!!!<<<<<<<<<<<<<<<<<<<<<
+
+
+Landmark1=landmark(55.0,67.0,10.0,20.0,"blue",canvas,"LongJo",True,Sand2)
+ListOfLandmarks=[Landmark1]
+
+Treasure1=Treasure(200.0,578.0,10.0,5.0,"dark green",canvas,False)
+
+Robot1 = Robot(52,224,5.0,20,colour='blue')
+Robot1.drawRobot(canvas)
+for t in range(500):
+
+    Robot1.roam()
+    
+    time.sleep(.1
+               )
+print 'BFS path: ', BFS(graph, Sand1)
+
+
+
+window.mainloop()#Keeps the window open while the program is running
+ 
+#END OF PROGRAM
