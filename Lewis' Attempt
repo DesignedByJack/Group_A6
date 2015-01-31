@@ -6,6 +6,9 @@ window= Tk()
 canvas = Canvas(window, width=800, height=600, bg='white')
 canvas.pack(padx=10, pady=10)
 
+#startbutton:
+StartButton1=Button(window, text='START', height=1, width=20, command=0)
+StartButton1.place(x=15, y=520)
 
 class Landmark:
     
