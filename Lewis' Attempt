@@ -126,12 +126,7 @@ robot2 = Robot(rand3, rand4,)
 
 robot1.drawRobot(canvas)
 robot2.drawRobot(canvas)
-
-for t in range(500):
-
-    robot1.roam()
-    robot2.roam()
-    time.sleep(.1)
+    
 
 vx = 10.0 # x velocity
 vy = 5.0 # y velocity
@@ -158,6 +153,12 @@ for t in range(1, 500):
     canvas.coords(id1,x1+vx,y1+vy,x2+vx,y2+vy)
     canvas.update()
     time.sleep(0.1)
+    
+for t in range(500):
+
+    robot1.roam()
+    robot2.roam()
+    time.sleep(.1)
  
 
 window.mainloop()
