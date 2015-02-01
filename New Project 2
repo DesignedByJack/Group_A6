@@ -121,6 +121,12 @@ rand2 = random.randrange(60, 490, 1)
 r2d2 = Robot(rand1, rand2, speed = 8.0, colour='cyan')      #robot calling robot class with random spawning
 r2d2.drawRobot(canvas)
 
+# Boundaries:
+x_min = 50.0 
+y_min = 50.0
+x_max = 740.0
+y_max = 490.0
+
 light1 = Lights(20, 60, 20, 'green')                        #calls light class
 light1.drawLight(canvas)
 
