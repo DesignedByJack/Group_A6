@@ -88,13 +88,19 @@ class Lights():
     def change_colour(self, canvas):
         
         self.canvas = canvas
-        x=random.randrange(1, 10)
+        x=random.randrange(1, 25)
         
         if x==1:                        #changes colour of traffic lights
             
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = 'orange')
+            canvas.update()
+            time.sleep(1)
             self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = 'red')
             canvas.update()
-            time.sleep(3)
+            time.sleep(2)
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = 'orange')
+            canvas.update()
+            time.sleep(1)
             self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = self.colour)
             canvas.update()
             
