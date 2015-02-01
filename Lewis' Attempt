@@ -169,17 +169,16 @@ for t in range(5000):
     
     light1.change_colour(canvas)
     
-    theList = ["rectangle1", "rectangle3", "rectangle4", "rectangle6", "rectangle8", "rectangle9"]  # start of linear search
 
     i = 0
-    while i < len(theList):
+    while i = 0
           
         robot1.roam()
         robot2.roam()
         canvas.update()
         time.sleep(.1)
         
-        i = i + 1
+
  
 
 window.mainloop()
