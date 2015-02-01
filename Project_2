@@ -78,7 +78,7 @@ class Robot:
          self.canvas = canvas
          self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
 
-#Class for the Obstacles
+#Class for the Landmarks
 class landmark(objects):
     
     def __init__(self, x, y,height,width,colour,canvas,ID, treasure,Road):
@@ -87,6 +87,7 @@ class landmark(objects):
         self.ID=ID
         self.Road=Road         
 
+#Class for treasures
 class Treasure(objects):
     def __init__(self,x,y,height,width,colour,canvas,Found):
         objects.__init__(self,x,y,height,width,colour,canvas)
@@ -96,6 +97,20 @@ class Treasure(objects):
         canvas.itemconfig(self.object, fill=colour,width=0)
         canvas.update
 
+#Lights class
+class Lights():
+    def __init__(self,x,y,x1,y1,colour):
+        self.x=x
+        self.y=y
+        self.y1=y1
+        self.x1=x1
+        self.colour = colour
+        self.object = canvas.create_oval(self.x,self.y,self.x1,self.y1,fill = self.colour)
+        
+    def change_colour(self, colour):
+        canvas.itemconfig(self.object, fill=colour)
+        canvas.update()
+
 #World Class
 class World:
 
@@ -104,9 +119,12 @@ class World:
              
 
 canvas.create_rectangle(50,50,750,500)
-canvas.create_oval(20,60,40,80, fill='red')
-canvas.create_oval(20,90,40,110, fill='orange')
-canvas.create_oval(20,120,40,140, fill='green')
+
+#Lights
+
+Light1=Lights(20,60,40,80,'red')
+Light2=Lights(20,90,40,110,'orange')
+Light3=Lights(20,120,40,140,'green')
 
 
 
@@ -121,7 +139,7 @@ Sand1=Sand('Sand1',52,224,697,40, False)
 Sand2=Sand('Sand2',349,52,40,212,True,'blue')
 Sand3=Sand('Sand3',170,120,40,144,False,'blue')
 
-#SEARCHING!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>
+'''#SEARCHING!!!>>>>>>>>>>>>>>>>>>>>>>>>>>>
 graph = {Sand1: set([Sand2,Sand3])}
 
 
@@ -144,7 +162,7 @@ def shortest_path(graph, start, goal):
 
 print(shortest_path(graph, Sand1, Sand2)) # ['A', 'C', 'F']
 #END!!!!<<<<<<<<<<<<<<<<<<<<<
-
+'''
 
 Landmark1=landmark(55.0,67.0,10.0,20.0,"blue",canvas,"LongJo",True,Sand2)
 ListOfLandmarks=[Landmark1]
