@@ -1,0 +1,173 @@
+#START OF PROGRAM
+ 
+#Imports all from the Tkinter Python library
+
+from Tkinter import*
+import time     #Imports 'time' from the Tkinter Python library
+import random   #Imports 'random' from the Tkinter Python library
+
+#Class for the Robots
+
+class Robot:
+    
+    def __init__(self, x, y, speed = 5.0, size = 15, colour = 'blue'):
+
+        self.x = x
+        self.y = y
+        self.xEnd = x + size
+        self.yEnd = y + size
+        self._vx = 0
+        self._vy = 0
+        self.speed = speed
+        self.size = size
+        self.colour = colour
+
+    def drawRobot(self, canvas):
+        
+        self.canvas = canvas
+        self.shape = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill=self.colour)
+
+    def pathfind(self):
+
+        v = self.speed                  
+        
+        self._vx += random.randint(-v, v)           #random movement
+        self._vy += random.randint(-v, v)
+        self._vx = max(-v, min(self._vx, v))
+        self._vy = max(-v, min(self._vy, v))
+
+        self.x += self._vx
+        self.y += self._vy
+
+        self.canvas.coords(self.shape, self.x, self.y, self.x + self.size, self.y + self.size)  
+        self.canvas.update()  
+
+#Class for the Landmarks
+        
+class Landmark:
+    
+    def __init__(self, x, y, size):
+
+        self.x = x
+        self.y = y
+        self.size = size
+        self.xEnd = x + size
+        self.yEnd = y + size
+        
+    def drawLandmark(self, canvas):
+
+        self.canvas = canvas   
+        self.rectangle = canvas.create_rectangle(self.x, self.y, self.xEnd, self.yEnd, fill = 'purple')
+
+    def treasure(self, canvas):
+
+        self.canvas = canvas
+        self.oval = canvas.create_oval((self.x + self.xEnd - 10)/2, (self.y + self.yEnd - 10)/2,(self.x + self.xEnd + 10)/2,(self.y + self.yEnd + 10)/2, fill = 'yellow')
+
+    def deleteTreasure(self, canvas):
+
+        self.canvas = canvas
+        self.oval = canvas.create_oval((self.x + self.xEnd - 10)/2, (self.y + self.yEnd - 10)/2,(self.x + self.xEnd + 10)/2,(self.y + self.yEnd + 10)/2, fill = 'purple')
+        
+class Lights():
+    
+    def __init__(self, x, y, size, colour = 'red'):
+        
+        self.x = x
+        self.y = y
+        self.size = size
+        self.xEnd = x + size
+        self.yEnd = y + size
+        self.colour = colour
+
+    def drawLight(self, canvas):
+        
+        self.canvas = canvas
+        self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = self.colour)
+        
+    def change_colour(self, canvas):
+        
+        self.canvas = canvas
+        x=random.randrange(1, 10)
+        
+        if x==1:                        #changes colour of traffic lights
+            
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = 'red')
+            canvas.update()
+            time.sleep(3)
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = self.colour)
+            canvas.update()
+            
+        else:
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = self.colour)
+            canvas.update()
+        
+window= Tk()                                                    #Creates a GUI interface window
+window.title("Group 6 | Project 2")                             #Sets the title of the window to 'Group 6 | Project 2'
+canvas = Canvas(window, width=800, height=600, bg='white')      #Sets the width, height and background colour of the GUI window
+canvas.pack(padx=10, pady=10)                                   #The canvas widget from the Tkinter library
+
+canvas.create_rectangle(50, 50, 750, 500)
+
+rand1 = random.randrange(60, 740, 1)
+rand2 = random.randrange(60, 490, 1)
+
+r2d2 = Robot(rand1, rand2, speed = 8.0, colour='cyan')      #robot calling robot class with random spawning
+r2d2.drawRobot(canvas)
+
+light1 = Lights(20, 60, 20, 'green')                        #calls light class
+light1.drawLight(canvas)
+
+#Course Shapes
+
+rectangle1 = Landmark(70, 70, 30)
+rectangle1.drawLandmark(canvas)
+rectangle1.treasure(canvas)
+
+rectangle2 = Landmark(120, 200, 30)
+rectangle2.drawLandmark(canvas)
+
+rectangle3 = Landmark(400, 370, 30)
+rectangle3.drawLandmark(canvas)
+rectangle3.treasure(canvas)
+
+rectangle4 = Landmark(360, 90, 30)
+rectangle4.drawLandmark(canvas)
+rectangle4.treasure(canvas)
+
+rectangle5 = Landmark(570, 230, 30)
+rectangle5.drawLandmark(canvas)
+
+rectangle6 = Landmark(670, 130, 30)
+rectangle6.drawLandmark(canvas)
+rectangle6.treasure(canvas)
+
+rectangle7 = Landmark(100, 380, 30)
+rectangle7.drawLandmark(canvas)
+
+rectangle8 = Landmark(580, 400, 30)
+rectangle8.drawLandmark(canvas)
+rectangle8.treasure(canvas)
+
+rectangle9 = Landmark(330, 200, 30)
+rectangle9.drawLandmark(canvas)
+rectangle9.treasure(canvas)
+
+for t in range(5000):
+    
+    light1.change_colour(canvas)
+    
+    theList = ["rectangle1", "rectangle3", "rectangle4", "rectangle6", "rectangle8", "rectangle9"]  # start of linear search
+
+    i = 0
+    while i < len(theList):
+          
+        r2d2.pathfind()
+        canvas.update()
+        time.sleep(.1)
+        
+        i = i + 1
+
+window.mainloop()#Keeps the window open while the program is running
+ 
+#END OF PROGRAM
