@@ -6,9 +6,6 @@ window= Tk()
 canvas = Canvas(window, width=800, height=600, bg='white')
 canvas.pack(padx=10, pady=10)
 
-#startbutton:
-StartButton1=Button(window, text='START', height=1, width=20, command=0)
-StartButton1.place(x=15, y=520)
 
 class Landmark:
     
@@ -26,7 +23,7 @@ class Landmark:
 
 
 def Map():
-    global elements 
+    
     elements = [
             Landmark(80,60,300,120, tag = 1),
             Landmark(300,350,200,300,tag = 0),
@@ -38,23 +35,6 @@ def Map():
   
 Map()
 
-def search(Map):
-    for i in range (len(elements)):
-        if elements[i] == 1:
-            return i
-        else:
-            landmark.search() 
-        print i
-
-
-'''def lookup(Map):
-    for i in range(7):
-        if elements == elements[i]:
-            return i + 1
-        return 0
-print lookup("True")'''
-
-    
 
 class Robot:
 
@@ -95,6 +75,48 @@ class Robot:
         self.canvas = canvas
         self.shape = canvas.create_oval(self.x, self.y, self.x+self.size, self.y + self.size, fill=self.colour)
 
+class Lights():
+    
+    def __init__(self, x, y, size, colour = 'red'):
+        
+        self.x = x
+        self.y = y
+        self.size = size
+        self.xEnd = x + size
+        self.yEnd = y + size
+        self.colour = colour
+
+    def drawLight(self, canvas):
+        
+        self.canvas = canvas
+        self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = self.colour)
+        
+    def change_colour(self, canvas):
+        
+        self.canvas = canvas
+        x=random.randrange(1, 10)
+        
+        if x==1:                        #changes colour of traffic lights
+            
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = 'orange')
+            canvas.update()
+            time.sleep(1)
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = 'red')
+            canvas.update()
+            time.sleep(2)
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = 'orange')
+            canvas.update()
+            time.sleep(1)
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = self.colour)
+            canvas.update()
+            
+        else:
+            self.object = canvas.create_oval(self.x, self.y, self.xEnd, self.yEnd, fill = self.colour)
+            canvas.update()
+
+
+light1 = Lights(20, 60, 20, 'green')                        #calls light class
+light1.drawLight(canvas)
 
 
  
@@ -105,6 +127,23 @@ class Robot:
     
     
 
+def search(Map):
+    for i in range (len(elements)):
+        if elements[i] == 1:
+            return i
+        else:
+            landmark.search() 
+        print i
+
+
+'''def lookup(Map):
+    for i in range(7):
+        if elements == elements[i]:
+            return i + 1
+        return 0
+print lookup("True")'''
+
+    
     
         
         
@@ -112,9 +151,6 @@ class Robot:
  
 
 canvas.create_rectangle(50,50,750,500)
-redLight = canvas.create_oval(20,60,40,80, fill='red')
-orangeLight =canvas.create_oval(20,90,40,110, fill='orange')
-greenLight = canvas.create_oval(20,120,40,140, fill='green')
 
 rand1 = random.randrange(60,740,1)
 rand2 =random.randrange(60,490,1)
@@ -126,39 +162,24 @@ robot2 = Robot(rand3, rand4,)
 
 robot1.drawRobot(canvas)
 robot2.drawRobot(canvas)
+
+
+
+for t in range(5000):
     
-
-vx = 10.0 # x velocity
-vy = 5.0 # y velocity
-# Boundaries
-x_min = 50.0 
-y_min = 50.0
-x_max = 740.0
-y_max = 400.0
-id1=canvas.create_rectangle(4,7,4+10,7+10, fill = "red" )
-
-# Move robot for 500 timesteps
-for t in range(1, 500):
-    x1,y1,x2,y2=canvas.coords(id1)
-# If a boundary has been crossed, reverse the direction
-    if x1 >= x_max:
-        vx = -10.0
-    if y1 <= y_min:
-        vy = 5.0
-    if y2 >= y_max:
-        vy = -5.0
-    if x1 <= x_min:
-        vx = 10.0
-
-    canvas.coords(id1,x1+vx,y1+vy,x2+vx,y2+vy)
-    canvas.update()
-    time.sleep(0.1)
+    light1.change_colour(canvas)
     
-for t in range(500):
+    theList = ["rectangle1", "rectangle3", "rectangle4", "rectangle6", "rectangle8", "rectangle9"]  # start of linear search
 
-    robot1.roam()
-    robot2.roam()
-    time.sleep(.1)
+    i = 0
+    while i < len(theList):
+          
+        robot1.roam()
+        robot2.roam()
+        canvas.update()
+        time.sleep(.1)
+        
+        i = i + 1
  
 
 window.mainloop()
