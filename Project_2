@@ -20,6 +20,20 @@ canvas.pack(padx=10, pady=10) #The canvas widget from the Tkinter library
 
 canvas.pack(expand = YES, fill = BOTH)
 
+#Classes and functions>>>>>>>>>>>>>
+def leftClick(event,colour='red'):
+    
+    x, y = event.x, event.y
+    print('{}, {}'.format(x, y))
+    print('left')
+    
+    sand1=Sand('sand1',x,y,10,10,False,colour)
+
+def rightClick(event):
+    x, y = event.x, event.y
+    print('{}, {}'.format(x, y))
+    print('right')
+
 
 #Class for the Robots 
 class objects:
@@ -171,6 +185,10 @@ Treasure1=Treasure(200.0,475.0,10.0,5.0,"dark green",canvas,False)
 
 Robot1 = Robot(52,224,5.0,20,colour='blue')
 Robot1.drawRobot(canvas)
+canvas.bind('<Button-1>', leftClick)
+canvas.bind('<Button-3>', rightClick)
+
+
 for t in range(500):
 
     Robot1.roam()
