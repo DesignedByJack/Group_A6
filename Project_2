@@ -21,6 +21,13 @@ canvas.pack(padx=10, pady=10) #The canvas widget from the Tkinter library
 canvas.pack(expand = YES, fill = BOTH)
 
 #Classes and functions>>>>>>>>>>>>>
+def bubbleSort():
+	for number in range(len(description)-1, 0, -1):
+		for i in range(number):
+			if len(description[i]) > len(description[i + 1]):
+				description[i], description[i + 1] = description[i + 1], description[i]
+				print description
+
 def leftClick(event,colour='red'):
     
     x, y = event.x, event.y
