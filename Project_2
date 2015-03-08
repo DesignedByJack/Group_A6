@@ -16,7 +16,12 @@ window.title("Group 6 | Project 2") #Sets the title of the window to 'Group 6 | 
 canvas = Canvas(window, width=800, height=600, bg='white') #Sets the width, height and background colour of the GUI window
 canvas.pack(padx=10, pady=10) #The canvas widget from the Tkinter library
 
-
+#EXIT button:
+def close_window (): 
+        window.destroy()
+        
+ExitButton1=Button(window, text='EXIT', height=1, width=20, command=close_window)
+ExitButton1.place(x=15, y=520)
 
 canvas.pack(expand = YES, fill = BOTH)
 
